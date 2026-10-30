@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel Jam Masjid</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f9; padding: 20px; max-width: 600px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { background: #005f73; color: white; border: none; padding: 10px 15px; margin-top: 15px; cursor: pointer; border-radius: 5px; width: 100%; font-size: 1rem; }
+        button:hover { background: #0a9396; }
+    </style>
+</head>
+<body>
+
+    <h2>Panel Kontrol Jam Masjid</h2>
+    
+    <div class="card">
+        <h3>Pengaturan Tampilan</h3>
+        <label>Nama Masjid:</label>
+        <input type="text" id="input-mosque" placeholder="Contoh: Masjid Assyaroh">
+
+        <label>Running Text (Pesan Berjalan):</label>
+        <textarea id="input-running" rows="3"></textarea>
+
+        <label>Link URL Gambar Flyer (Pisahkan dengan koma jika banyak):</label>
+        <textarea id="input-flyers" rows="3" placeholder="https://link-gambar1.jpg, https://link-gambar2.jpg"></textarea>
+
+        <button onclick="saveConfig()">Simpan Perubahan</button>
+    </div>
+
+    <script>
+        // Load data saat ini ke form
+        const savedConfig = JSON.parse(localStorage.getItem('masjidConfig')) || {
+            mosqueName: "Masjid Assyaroh, Serua Indah",
+            runningText: "Mohon mematikan atau menonaktifkan handphone selama di dalam ruang utama masjid.",
+            flyers: []
+        };
+
+        document.getElementById('input-mosque').value = savedConfig.mosqueName;
+        document.getElementById('input-running').value = savedConfig.runningText;
+        document.getElementById('input-flyers').value = savedConfig.flyers.join(', ');
+
+        function saveConfig() {
+            const flyersArr = document.getElementById('input-flyers').value.split(',').map(s => s.trim());
+            const newConfig = {
+                mosqueName: document.getElementById('input-mosque').value,
+                runningText: document.getElementById('input-running').value,
+                flyers: flyersArr
+            };
+            localStorage.setItem('masjidConfig', JSON.stringify(newConfig));
+            alert('Pengaturan berhasil disimpan! Layar TV di masjid akan memperbarui secara otomatis.');
+        }
+    </script>
+</body>
+</html>
