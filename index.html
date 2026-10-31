@@ -139,14 +139,13 @@
                 const data = await response.json();
                 globalJadwal = data.data.jadwal;
 
-                // Daftar sholat dengan penegasan teks iqomah yang aman tanpa undefined
                 const sholatList = [
-                    { name: 'Shubuh', time: globalJadwal.subuh, iqomah: 'Iqomah: 10 mnt' },
-                    { name: 'Syuruq', time: globalJadwal.syuruq, iqomah: '-' },
-                    { name: 'Dzuhur', time: globalJadwal.dzuhur, iqomah: 'Iqomah: 10 mnt' },
-                    { name: 'Ashar', time: globalJadwal.ashar, iqomah: 'Iqomah: 10 mnt' },
-                    { name: 'Maghrib', time: globalJadwal.maghrib, iqomah: 'Iqomah: 7 mnt' },
-                    { name: 'Isya', time: globalJadwal.isya, iqomah: 'Iqomah: 10 mnt' },
+                    { name: 'Shubuh', time: globalJadwal.subuh, durasi: 'Iqomah: 10 mnt' },
+                    { name: 'Syuruq', time: globalJadwal.syuruq, durasi: '-' },
+                    { name: 'Dzuhur', time: globalJadwal.dzuhur, durasi: 'Iqomah: 10 mnt' },
+                    { name: 'Ashar', time: globalJadwal.ashar, durasi: 'Iqomah: 10 mnt' },
+                    { name: 'Maghrib', time: globalJadwal.maghrib, durasi: 'Iqomah: 7 mnt' },
+                    { name: 'Isya', time: globalJadwal.isya, durasi: 'Iqomah: 10 mnt' },
                 ];
 
                 let html = '';
@@ -155,7 +154,7 @@
                         <div class="sholat-card">
                             <div>
                                 <div class="sholat-name">${item.name}</div>
-                                <div class="iqomah-text">${item.iqomah}</div>
+                                <div class="iqomah-text">${item.durasi}</div>
                             </div>
                             <div class="sholat-time">${item.time}</div>
                         </div>
