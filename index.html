@@ -150,12 +150,12 @@
 
                 let html = '';
                 sholatList.forEach(item => {
-                    let iqomahDisplay = item.iqomah !== '-' ? `Iqomah: ${item.iqomah}` : '-';
+                    let iqomahHtml = item.name === 'Syuruq' ? '-' : `Iqomah: ${item.iqomah}`;
                     html += `
                         <div class="sholat-card">
                             <div>
                                 <div class="sholat-name">${item.name}</div>
-                                <div class="iqomah-text">${iqomahDisplay}</div>
+                                <div class="iqomah-text">${iqomahHtml}</div>
                             </div>
                             <div class="sholat-time">${item.time}</div>
                         </div>
